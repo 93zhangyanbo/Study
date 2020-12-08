@@ -10,6 +10,14 @@ import java.io.IOException;
  * @Date:2020-11-22-17:46
  */
 public class ResourceMgr {
+    private static final ResourceMgr INSTANCE = new ResourceMgr();
+
+    private ResourceMgr(){}
+
+    public static ResourceMgr getInstance(){
+        return INSTANCE;
+    }
+
     public static BufferedImage GoodTank1L, GoodTank1R, GoodTank1U, GoodTank1D;
     public static BufferedImage GoodTank2L, GoodTank2R, GoodTank2U, GoodTank2D;
     public static BufferedImage BadTank1L, BadTank1R, BadTank1U, BadTank1D;

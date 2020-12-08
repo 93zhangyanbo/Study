@@ -8,17 +8,17 @@ import java.awt.*;
  * @Date:2020-11-22-14:31
  */
 public class Bullet {
-    private static final int SPEED = Integer.parseInt(PropertyMgr.get("bulletSpeed"));
-    public static final int WIDTH = ResourceMgr.bulletD.getWidth();
-    public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
+    private static final int SPEED = Integer.parseInt(main.PropertyMgr.get("bulletSpeed"));
+    public static final int WIDTH = main.ResourceMgr.bulletD.getWidth();
+    public static final int HEIGHT = main.ResourceMgr.bulletD.getHeight();
     private boolean living = true;
     private int x,y;
-    private Dir dir;
-    private TankFrame tf;
+    private main.Dir dir;
+    private main.TankFrame tf;
     private Group group;
     Rectangle rect = new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tf) {
+    public Bullet(int x, int y, main.Dir dir, Group group, main.TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -54,11 +54,11 @@ public class Bullet {
         this.y = y;
     }
 
-    public Dir getDir() {
+    public main.Dir getDir() {
         return dir;
     }
 
-    public void setDir(Dir dir) {
+    public void setDir(main.Dir dir) {
         this.dir = dir;
     }
 
@@ -77,16 +77,16 @@ public class Bullet {
         }
         switch (dir){
             case LEFT:
-                g.drawImage(ResourceMgr.bulletL,x,y,null);
+                g.drawImage(main.ResourceMgr.bulletL,x,y,null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceMgr.bulletR,x,y,null);
+                g.drawImage(main.ResourceMgr.bulletR,x,y,null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.bulletU,x,y,null);
+                g.drawImage(main.ResourceMgr.bulletU,x,y,null);
                 break;
             case DOWN:
-                g.drawImage(ResourceMgr.bulletD,x,y,null);
+                g.drawImage(main.ResourceMgr.bulletD,x,y,null);
                 break;
 
         }
@@ -114,19 +114,19 @@ public class Bullet {
         //update rect
         rect.x = this.x;
         rect.y = this.y;
-        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) living = false;
+        if (x < 0 || y < 0 || x > main.TankFrame.GAME_WIDTH || y > main.TankFrame.GAME_HEIGHT) living = false;
     }
 
-    public void collideWith(Tank tank) {
+    public void collideWith(main.Tank tank) {
         if(this.group == tank.getGroup()) return;
 
         //用一个rect来记录子弹的位置
         if(this.rect.intersects(tank.getRect())) {
             tank.die();
             this.die();
-            int eX = tank.getX() + Tank.WIDTH/2 - Explode.WIDTH/2;
-            int eY = tank.getY() + Tank.HEIGHT/2 - Explode.HEIGHT/2;
-            this.tf.explodes.add(new Explode(eX,eY,this.tf));
+            int eX = tank.getX() + main.Tank.WIDTH/2 - main.Explode.WIDTH/2;
+            int eY = tank.getY() + main.Tank.HEIGHT/2 - main.Explode.HEIGHT/2;
+            this.tf.explodes.add(new main.Explode(eX,eY,this.tf));
         }
 
     }

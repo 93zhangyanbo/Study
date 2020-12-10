@@ -1,7 +1,0 @@
-initTankCount=8
-tankSpeed=5
-initTankX=200
-initTankY=400
-bulletSpeed=5
-GAME_WIDTH=800
-GAME_HEIGHT=600
